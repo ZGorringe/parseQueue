@@ -1,10 +1,27 @@
 <DOCTYPE html>
-<html>
+<html ng-app="parseQ">
 <head>
 	<title>ParseQ</title>
+	<link rel="stylesheet"  type="text/css" href="main.css">
 </head>
-<body>
+<body ng-controller="mainController">
+	<div>
+		<form>
+			<input class="form-control text-box" ng-model="studentQuestion" type="text" placeholder="Question">
+			<button ng-click="postData(); getParseData()">Submit</button>
+		</form>	
+	</div>
+	<div class="questionsContainer-Red">
+		<p ng-repeat="question in questions | filter: question.status='red'"> {{question.content}} <button ng-click="changeStatus(question)">Help?</button></p>
+	</div>
+	<div class="questionsContainer-Yellow">
+		<p ng-repeat="question in questions | filter: question.status='yellow'"> {{question.content}} <button ng-click="deleteParseData(question)">Done</button></p>
+	</div>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/defaultHeaders.js"></script>
+<script src="js/Controllers/mainController.js"></script>
+<script src="js/Services/parseService.js"></script>
 </body>
 </html>
